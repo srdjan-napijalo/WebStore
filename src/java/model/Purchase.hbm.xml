@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 4, 2019 11:52:19 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Purchase" table="purchase" catalog="web_store" optimistic-lock="version">
+        <composite-id name="id" class="model.PurchaseId">
+            <key-property name="customerFk" type="int">
+                <column name="customer_fk" />
+            </key-property>
+            <key-property name="productFk" type="int">
+                <column name="product_fk" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="customer" class="model.Customer" update="false" insert="false" lazy="false" fetch="select">
+            <column name="customer_fk" not-null="true" />
+        </many-to-one>
+        <many-to-one name="product" class="model.Product" update="false" lazy="false" insert="false" fetch="select">
+            <column name="product_fk" not-null="true" />
+        </many-to-one>
+        <property name="timeOfPurchase" type="timestamp">
+            <column name="time_of_purchase" length="26" />
+        </property>
+    </class>
+</hibernate-mapping>

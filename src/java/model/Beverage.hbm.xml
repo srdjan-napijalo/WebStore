@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 4, 2019 11:52:19 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Beverage" table="beverage" catalog="web_store" optimistic-lock="version">
+        <id name="beverageId" type="int">
+            <column name="beverage_id" />
+            <generator class="foreign">
+                <param name="property">product</param>
+            </generator>
+        </id>
+        <one-to-one name="product" class="model.Product" constrained="true"></one-to-one>
+        <property name="type" type="string">
+            <column name="type" length="45" not-null="true" />
+        </property>
+        <property name="volume" type="int">
+            <column name="volume" not-null="true" />
+        </property>
+        <property name="alcohol" type="int">
+            <column name="alcohol" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

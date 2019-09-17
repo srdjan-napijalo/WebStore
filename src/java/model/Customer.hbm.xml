@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 4, 2019 11:52:19 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Customer" table="customer" catalog="web_store" optimistic-lock="version">
+        <id name="customerId" type="java.lang.Integer">
+            <column name="customer_id" />
+            <generator class="identity" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="first_name" length="45" not-null="true" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="45" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="45" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" not-null="true" />
+        </property>
+        <property name="purchases" type="java.lang.Integer">
+            <column name="purchases" />
+        </property>
+        <property name="accountBalance" type="java.math.BigDecimal">
+            <column name="account_balance" />
+        </property>
+        <set name="purchases_1" table="purchase" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_fk" not-null="true" />
+            </key>
+            <one-to-many class="model.Purchase" />
+        </set>
+    </class>
+</hibernate-mapping>
